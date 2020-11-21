@@ -292,6 +292,9 @@ class SimpleActor(nn.Module, Actor):
             self.distribution = MultiCategoricalDistribution(
                 self.encoding_size, self.action_spec.discrete_branches
             )
+        # During training, clipping is done in TorchPolicy, but we need to clip before ONNX
+        # export as well.
+        self._clip_action_on_export = not tanh_squash
 
     @property
     def memory_size(self) -> int:
@@ -339,6 +342,8 @@ class SimpleActor(nn.Module, Actor):
         if self.action_spec.is_continuous():
             action_list = self.sample_action(dists)
             action_out = torch.stack(action_list, dim=-1)
+            if self._clip_action_on_export:
+                action_out = torch.clamp(action_out, -3, 3) / 3
         else:
             action_out = torch.cat([dist.all_log_prob() for dist in dists], dim=1)
         return (
@@ -488,7 +493,9 @@ class SeparateActorCritic(SimpleActor, ActorCritic):
 class GlobalSteps(nn.Module):
     def __init__(self):
         super().__init__()
-        self.__global_step = nn.Parameter(torch.Tensor([0]), requires_grad=False)
+        self.__global_step = nn.Parameter(
+            torch.Tensor([0]).to(torch.int64), requires_grad=False
+        )
 
     @property
     def current_step(self):
