@@ -24,7 +24,8 @@ public class C_AgentSoccer : Agent
         Striker,
         Goalie,
         Generic,
-        Companion
+        Companion,
+        Human
     }
 
     [HideInInspector]
@@ -75,6 +76,11 @@ public class C_AgentSoccer : Agent
         {
             m_LateralSpeed = 0.3f;
             m_ForwardSpeed = 1.3f;
+        }
+        else if (position == Position.Human)
+        {
+            m_LateralSpeed = 1.0f;
+            m_ForwardSpeed = 1.0f;
         }
         else
         {
@@ -181,20 +187,20 @@ public class C_AgentSoccer : Agent
             discreteActionsOut[0] = 2;
         }
         //rotate
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.N))
         {
             discreteActionsOut[2] = 1;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.M))
         {
             discreteActionsOut[2] = 2;
         }
         //right
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.D))
         {
             discreteActionsOut[1] = 1;
         }
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.A))
         {
             discreteActionsOut[1] = 2;
         }
