@@ -3699,7 +3699,7 @@ MonoBehaviour:
     VectorActionSize: 030000000300000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 4e78e26f6d61e2241a7b31032dc511f9, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 2af9b96f323f0d24abc539d50a128f7d, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
   m_BehaviorName: SoccerTwosCompanion
@@ -3726,7 +3726,7 @@ MonoBehaviour:
   team: 0
   m_PlayerIndex: 0
   area: {fileID: 758846226624277212}
-  position: 2
+  position: 3
   timePenalty: 0
   agentRb: {fileID: 0}
 --- !u!114 &1023485123796557062
@@ -4222,7 +4222,7 @@ MonoBehaviour:
   team: 0
   m_PlayerIndex: 0
   area: {fileID: 758846226624277212}
-  position: 2
+  position: 3
   timePenalty: 0
   agentRb: {fileID: 0}
 --- !u!114 &2562571719799803906
