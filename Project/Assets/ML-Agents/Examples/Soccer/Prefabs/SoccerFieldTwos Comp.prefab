@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 9152743230243588598}
   - component: {fileID: 798330825103180240}
   m_Layer: 0
-  m_Name: PurpleGeneric
+  m_Name: PurpleHuman
   m_TagString: purpleAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,10 +244,10 @@ MonoBehaviour:
     VectorActionSize: 030000000300000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 5022602860645237092, guid: 4b3f720db148b9440bc9240253031c7c, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 214ba74121cdd4543a6a972504f7675c, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 2
-  m_BehaviorName: SoccerTwosDefault
+  m_BehaviorName: SoccerTwosHuman
   TeamId: 1
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -271,7 +271,7 @@ MonoBehaviour:
   team: 0
   m_PlayerIndex: 0
   area: {fileID: 758846226624277212}
-  position: 2
+  position: 4
   timePenalty: 0
   agentRb: {fileID: 0}
 --- !u!114 &114320493772006642

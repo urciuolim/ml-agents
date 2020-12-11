@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -41,6 +43,10 @@ public class C_AgentSoccer : Agent
     float m_Existential;
     float m_LateralSpeed;
     float m_ForwardSpeed;
+    public int scoreboard_id;
+
+    [HideInInspector]
+    public C_PlayerState playerState;
 
     [HideInInspector]
     public float timePenalty;
@@ -91,15 +97,23 @@ public class C_AgentSoccer : Agent
         agentRb = GetComponent<Rigidbody>();
         agentRb.maxAngularVelocity = 500;
 
-        var playerState = new C_PlayerState
+        playerState = new C_PlayerState
         {
             agentRb = agentRb,
             startingPos = transform.position,
             agentScript = this,
+            numGoalsScored = new List<int>(),
+            numKicks = new List<int>(),
+            totalReward = new List<float>(),
         };
         area.playerStates.Add(playerState);
         m_PlayerIndex = area.playerStates.IndexOf(playerState);
         playerState.playerIndex = m_PlayerIndex;
+        playerState.numGoalsScored.Add(0);
+        playerState.numKicks.Add(0);
+        playerState.totalReward.Add(0f);
+
+        Debug.Log(m_PlayerIndex + ":" + team + ":" + scoreboard_id);
 
         m_ResetParams = Academy.Instance.EnvironmentParameters;
     }
@@ -154,22 +168,37 @@ public class C_AgentSoccer : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
 
     {
-
+        var r = 0f;
         if (position == Position.Goalie)
         {
             // Existential bonus for Goalies.
             AddReward(m_Existential);
+            r = m_Existential;
         }
         else if (position == Position.Striker)
         {
             // Existential penalty for Strikers
             AddReward(-m_Existential);
+            r = -m_Existential;
+        }
+        else if (position == Position.Human)
+        {
+            // Existential penalty cumulant for Human too
+            timePenalty -= m_Existential;
+            r = -m_Existential;
         }
         else
         {
             // Existential penalty cumulant for Generic
             timePenalty -= m_Existential;
+            r = -m_Existential;
         }
+
+        var tmp = playerState.totalReward[playerState.totalReward.Count - 1];
+        playerState.totalReward.RemoveAt(playerState.totalReward.Count - 1);
+        playerState.totalReward.Add(tmp + r);
+        //area.updateUI();
+
         MoveAgent(actionBuffers.DiscreteActions);
     }
 
@@ -178,11 +207,11 @@ public class C_AgentSoccer : Agent
         var discreteActionsOut = actionsOut.DiscreteActions;
         discreteActionsOut.Clear();
         //forward
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             discreteActionsOut[0] = 1;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             discreteActionsOut[0] = 2;
         }
@@ -221,6 +250,10 @@ public class C_AgentSoccer : Agent
             var dir = c.contacts[0].point - transform.position;
             dir = dir.normalized;
             c.gameObject.GetComponent<Rigidbody>().AddForce(dir * force);
+            var tmp = playerState.numKicks[playerState.numKicks.Count - 1];
+            playerState.numKicks.RemoveAt(playerState.numKicks.Count - 1);
+            playerState.numKicks.Add(tmp + 1);
+            //area.updateUI();
         }
     }
 
