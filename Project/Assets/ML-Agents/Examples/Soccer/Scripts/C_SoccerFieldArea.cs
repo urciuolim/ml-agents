@@ -39,6 +39,7 @@ public class C_SoccerFieldArea : MonoBehaviour
     [HideInInspector]
     List<float> numEpisodes = new List<float>();
     public float nEpisodes;
+    public bool updateui;
 
     EnvironmentParameters m_ResetParams;
 
@@ -198,7 +199,8 @@ public class C_SoccerFieldArea : MonoBehaviour
             ps.totalReward.Add(tmp3+ r);
         }
         lastAgentKick = new int[] { -1, -1 };
-        updateUI();
+        if (updateui)
+            updateUI();
     }
 
     public void ResetBall()

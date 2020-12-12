@@ -113,7 +113,8 @@ public class C_AgentSoccer : Agent
         playerState.numKicks.Add(0);
         playerState.totalReward.Add(0f);
 
-        Debug.Log(m_PlayerIndex + ":" + team + ":" + scoreboard_id);
+        if (area.updateui)
+            Debug.Log(m_PlayerIndex + ":" + team + ":" + scoreboard_id);
 
         m_ResetParams = Academy.Instance.EnvironmentParameters;
     }
@@ -246,6 +247,8 @@ public class C_AgentSoccer : Agent
         }
         if (c.gameObject.CompareTag("ball"))
         {
+            // NO REWARD GIVEN UNLESS YOU RUN IN THEIR ACADEMY/CURRICULUM MODE
+            // WE DID NOT DO THAT
             AddReward(.2f * m_BallTouch);
             var dir = c.contacts[0].point - transform.position;
             dir = dir.normalized;
@@ -253,7 +256,6 @@ public class C_AgentSoccer : Agent
             var tmp = playerState.numKicks[playerState.numKicks.Count - 1];
             playerState.numKicks.RemoveAt(playerState.numKicks.Count - 1);
             playerState.numKicks.Add(tmp + 1);
-            //area.updateUI();
         }
     }
 
