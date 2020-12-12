@@ -219,11 +219,11 @@ public class C_AgentSoccer : Agent
             discreteActionsOut[0] = 2;
         }
         //rotate
-        if (Input.GetKey(KeyCode.N))
+        if (Input.GetKey(KeyCode.Q))
         {
             discreteActionsOut[2] = 1;
         }
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKey(KeyCode.E))
         {
             discreteActionsOut[2] = 2;
         }
