@@ -9,6 +9,6 @@ C:\Users\Michael\Documents\GitHub\ml-agents\Project
 
 Next, select the 2019 Unity version. You might get a warning here, choose the option that accepts the newer version of Unity. Finally, click the project in the list of projects to open it within Unity.
 
-Upon opening the IDE will most likely be empty. In the proect file explorer at the bottom of the screen, navigate to Assets > ML-Agents > Examples > Soccer > Scenes > _SoccerTwosDeepRLDemo.unity.
+Upon opening, the IDE will most likely be empty. In the project file explorer at the bottom of the screen, navigate to Assets > ML-Agents > Examples > Soccer > Scenes > _SoccerTwosDeepRLDemo.unity.
 
 This is our demo scene. Upon clicking the play button, various models will exhibit the behavior shown in our presentation. Selected displays 1-4 in the upper left hand corner of the Game camera (middle screen) switches between each stage of our project. You can control the agent in stage 2, labeled "Expert" demo.
