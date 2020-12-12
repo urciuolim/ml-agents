@@ -205,6 +205,8 @@ public class C_AgentSoccer : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        if (position != Position.Human)
+            return;
         var discreteActionsOut = actionsOut.DiscreteActions;
         discreteActionsOut.Clear();
         //forward
