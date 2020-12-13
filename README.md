@@ -15,4 +15,4 @@ This is our demo scene. Upon clicking the play button, various models will exhib
 
 Finally, training curves can be viewed through tensorboard. Our results folder can be downloaded from:
 https://drive.google.com/file/d/1Vvpq9uKqDgDyU98gS-07KbvYh7zt1lxE/view?usp=sharing
-After unzipping, use the command "tensorboard --logdir TNF_Results". SoccerTwosDefault is what we refer to as the "Generic" agent. SoccerTwosCompanion's training curve shows combined curver from both stage 1 and stage 3. Stage 1 was trained up to 25M steps, and stage 3 beyond that (which you can tell by the sudden drop in cumulative reward). Finally, SoccerTwosHuman is the imitation agent.
+After unzipping, use the command "tensorboard --logdir TNF_Results". SoccerTwosDefault is what we refer to as the "Generic" agent. SoccerTwosCompanion's training curve shows combined curve from both stage 1 and stage 3. Stage 1 was trained up to 25M steps, and stage 3 beyond that (which you can tell by the sudden drop in cumulative reward). Finally, SoccerTwosHuman is the imitation agent.
