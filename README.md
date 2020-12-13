@@ -12,3 +12,5 @@ Next, select the 2019 Unity version. You might get a warning here, choose the op
 Upon opening, the IDE will most likely be empty. In the project file explorer at the bottom of the screen, navigate to Assets > ML-Agents > Examples > Soccer > Scenes > _SoccerTwosDeepRLDemo.unity.
 
 This is our demo scene. Upon clicking the play button, various models will exhibit the behavior shown in our presentation. Selected displays 1-4 in the upper left hand corner of the Game camera (middle screen) switches between each stage of our project. You can control the agent in stage 2, labeled "Expert" demo.
+
+Finally, training curves can be viewed through tensorboard. After navigating to the repo's base directory, use the command "tensorboard --logdir TNF_Results". SoccerTwosDefault is what we refer to as the "Generic" agent. SoccerTwosCompanion's training curve shows combined curver from both stage 1 and stage 3. Stage 1 was trained up to 25M steps, and stage 3 beyond that (which you can tell by the suddon drop in cumulative reward). Finall, SoccerTwosHuman is the imitation agent.
